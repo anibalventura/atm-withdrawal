@@ -1,4 +1,4 @@
-﻿using System;
+﻿using ATM_Withdrawal.Menu;
 
 namespace ATM_Withdrawal
 {
@@ -6,7 +6,8 @@ namespace ATM_Withdrawal
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.ShowMenu();
         }
     }
 }

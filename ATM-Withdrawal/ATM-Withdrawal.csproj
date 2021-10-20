@@ -6,4 +6,12 @@
     <RootNamespace>ATM_Withdrawal</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Enum\" />
+    <None Remove="Menu\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Enum\" />
+    <Folder Include="Menu\" />
+  </ItemGroup>
 </Project>
