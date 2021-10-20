@@ -2,8 +2,8 @@
 {
     public enum DispenseMenuOptions
     {
-        FIRST_200_1000 = 1,
-        SECOND_100_500,
+        FIRST_MODE = 1,
+        SECOND_MODE,
         EFFICIENT_MODE,
         BACK
     }

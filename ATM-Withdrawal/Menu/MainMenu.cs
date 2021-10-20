@@ -1,5 +1,6 @@
 ﻿using System;
 using ATM_Withdrawal.Enum;
+using ATM_Withdrawal.Service;
 
 namespace ATM_Withdrawal.Menu
 {
@@ -11,7 +12,8 @@ namespace ATM_Withdrawal.Menu
             {
                 Console.Clear();
 
-                DispenseMenu dispenseMenu = new DispenseMenu();
+                DispenseModeMenu dispenseMenu = new DispenseModeMenu();
+                WithdrawalService withdrawalService = new WithdrawalService();
 
                 Console.WriteLine("Welcome to ATM Withdrawal!\n");
 
@@ -32,8 +34,8 @@ namespace ATM_Withdrawal.Menu
                         ShowMenu();
                         break;
                     case (int)MainMenuOptions.WITHDRAWAL:
-                        Console.WriteLine("Withdrawal Menu Selected");
-                        Console.ReadKey();
+                        Console.Clear();
+                        withdrawalService.StartTransaction();
                         ShowMenu();
                         break;
                     case (int)MainMenuOptions.EXIT:
