@@ -3,7 +3,7 @@ using ATM_Withdrawal.Enum;
 
 namespace ATM_Withdrawal.Menu
 {
-    public class MainMenu
+    public class DispenseMenu
     {
         public void ShowMenu()
         {
@@ -11,11 +11,10 @@ namespace ATM_Withdrawal.Menu
             {
                 Console.Clear();
 
-                DispenseMenu dispenseMenu = new DispenseMenu();
+                MainMenu mainMenu = new MainMenu();
 
-                Console.WriteLine("Welcome to ATM Withdrawal!\n");
-
-                string[] options = { "Dispense Mode", "Withdrawal", "Exit" };
+                string[] options = { "200 and 1000", "100 and 500",
+                    "Efficient Mode (Default) 100, 200, 500, 1000", "Back" };
 
                 for (int i = 0; i < options.Length; i++)
                 {
@@ -27,20 +26,23 @@ namespace ATM_Withdrawal.Menu
 
                 switch (option)
                 {
-                    case (int)MainMenuOptions.DISPENSE_MODE:
-                        dispenseMenu.ShowMenu();
-                        ShowMenu();
-                        break;
-                    case (int)MainMenuOptions.WITHDRAWAL:
-                        Console.WriteLine("Withdrawal Menu Selected");
+                    case (int)DispenseMenuOptions.FIRST_200_1000:
+                        Console.WriteLine("FIRST Mode Selected");
                         Console.ReadKey();
                         ShowMenu();
                         break;
-                    case (int)MainMenuOptions.EXIT:
-                        Console.WriteLine("\nThanks for using ATM Withdrawal!");
-                        Console.WriteLine("Made by Anibal Ventura");
+                    case (int)DispenseMenuOptions.SECOND_100_500:
+                        Console.WriteLine("SECOND Mode Selected");
                         Console.ReadKey();
-                        Environment.Exit(0);
+                        ShowMenu();
+                        break;
+                    case (int)DispenseMenuOptions.EFFICIENT_MODE:
+                        Console.WriteLine("EFFICIENT Mode Selected");
+                        Console.ReadKey();
+                        ShowMenu();
+                        break;
+                    case (int)DispenseMenuOptions.BACK:
+                        mainMenu.ShowMenu();
                         break;
                     default:
                         WrongOptionMsg();
