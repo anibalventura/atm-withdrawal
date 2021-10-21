@@ -23,12 +23,15 @@ namespace ATM_Withdrawal.Service
                 case (int)DispenseMenuOptions.SECOND_MODE:
                     SecondMode();
                     break;
+                case (int)DispenseMenuOptions.EFFICIENT_MODE:
+                    EfficientMode();
+                    break;
                 default:
                     EfficientMode();
                     break;
             }
 
-            Console.Write("Want to do another transaction? Y/N: ");
+            Console.Write("\nWant to do another transaction? Y/N: ");
             string anotherTansaction = Console.ReadLine().ToUpper();
 
             if (anotherTansaction == "Y")
@@ -43,17 +46,80 @@ namespace ATM_Withdrawal.Service
 
         private void FirstMode()
         {
-            Console.WriteLine("First mode withdrawal");
+            int[] denominations = { 1000, 200 };
+            int[] cashCounter = new int[denominations.Length];
+
+            for (int i = 0; i < cashCounter.Length; i++)
+            {
+                if (mainRepository.withdrawalAmount >= denominations[i])
+                {
+                    cashCounter[i] = mainRepository.withdrawalAmount / denominations[i];
+                    mainRepository.withdrawalAmount -= cashCounter[i] * denominations[i];
+                }
+            }
+
+            Console.WriteLine("Currency Count ->");
+
+            for (int i = 0; i < cashCounter.Length; i++)
+            {
+                if (cashCounter[i] != 0)
+                {
+                    Console.WriteLine(denominations[i] + " : "
+                        + cashCounter[i]);
+                }
+            }
         }
 
         private void SecondMode()
         {
-            Console.WriteLine("Second mode withdrawal");
+            int[] denominations = { 500, 100 };
+            int[] cashCounter = new int[denominations.Length];
+
+            for (int i = 0; i < cashCounter.Length; i++)
+            {
+                if (mainRepository.withdrawalAmount >= denominations[i])
+                {
+                    cashCounter[i] = mainRepository.withdrawalAmount / denominations[i];
+                    mainRepository.withdrawalAmount -= cashCounter[i] * denominations[i];
+                }
+            }
+
+            Console.WriteLine("Currency Count ->");
+
+            for (int i = 0; i < cashCounter.Length; i++)
+            {
+                if (cashCounter[i] != 0)
+                {
+                    Console.WriteLine(denominations[i] + " : "
+                        + cashCounter[i]);
+                }
+            }
         }
 
         private void EfficientMode()
         {
-            Console.WriteLine("Efficient mode withdrawal");
+            int[] denominations = { 1000, 500, 200, 100 };
+            int[] cashCounter = new int[denominations.Length];
+
+            for (int i = 0; i < cashCounter.Length; i++)
+            {
+                if (mainRepository.withdrawalAmount >= denominations[i])
+                {
+                    cashCounter[i] = mainRepository.withdrawalAmount / denominations[i];
+                    mainRepository.withdrawalAmount -= cashCounter[i] * denominations[i];
+                }
+            }
+
+            Console.WriteLine("Currency Count ->");
+
+            for (int i = 0; i < cashCounter.Length; i++)
+            {
+                if (cashCounter[i] != 0)
+                {
+                    Console.WriteLine(denominations[i] + " : "
+                        + cashCounter[i]);
+                }
+            }
         }
     }
 }

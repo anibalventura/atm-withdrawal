@@ -44,6 +44,7 @@ namespace ATM_Withdrawal.Menu
                         dispenseModeService.SetMode((int)DispenseMenuOptions.EFFICIENT_MODE);
                         Console.WriteLine("Now this ATM will dispense in Efficient Mode with " +
                             "\ncash of 100, 200, 500 and 1000.");
+                        Console.ReadKey();
                         ShowMenu();
                         break;
                     case (int)DispenseMenuOptions.BACK:
