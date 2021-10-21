@@ -1,6 +1,6 @@
 # ATM Withdrawal
 
-[![.NET](https://img.shields.io/static/v1?label=.Net&message=3.1&color=purple)](https://dotnet.microsoft.com)
+[![.NET](https://img.shields.io/static/v1?label=.NET&message=3.1&color=purple)](https://dotnet.microsoft.com)
 [![License](https://img.shields.io/static/v1?label=License&message=MIT&color=blue)](LICENCE.md)
 
 Basic ATM withdrawal console app written in .NET using OOP.
@@ -42,5 +42,5 @@ Enter amount to withdraw: 150
 ```xml
 MIT License
 
-Copyright (c) 2021 Anibal
+Copyright (c) 2021 Anibal Ventura
 ```
