@@ -26,9 +26,6 @@ namespace ATM_Withdrawal.Service
                 case (int)DispenseMenuOptions.EFFICIENT_MODE:
                     EfficientMode();
                     break;
-                default:
-                    EfficientMode();
-                    break;
             }
 
             Console.Write("\nWant to do another transaction? Y/N: ");
@@ -47,58 +44,26 @@ namespace ATM_Withdrawal.Service
         private void FirstMode()
         {
             int[] denominations = { 1000, 200 };
-            int[] cashCounter = new int[denominations.Length];
 
-            for (int i = 0; i < cashCounter.Length; i++)
-            {
-                if (mainRepository.withdrawalAmount >= denominations[i])
-                {
-                    cashCounter[i] = mainRepository.withdrawalAmount / denominations[i];
-                    mainRepository.withdrawalAmount -= cashCounter[i] * denominations[i];
-                }
-            }
-
-            Console.WriteLine("Currency Count ->");
-
-            for (int i = 0; i < cashCounter.Length; i++)
-            {
-                if (cashCounter[i] != 0)
-                {
-                    Console.WriteLine(denominations[i] + " : "
-                        + cashCounter[i]);
-                }
-            }
+            DispenseCash(denominations);
         }
 
         private void SecondMode()
         {
             int[] denominations = { 500, 100 };
-            int[] cashCounter = new int[denominations.Length];
 
-            for (int i = 0; i < cashCounter.Length; i++)
-            {
-                if (mainRepository.withdrawalAmount >= denominations[i])
-                {
-                    cashCounter[i] = mainRepository.withdrawalAmount / denominations[i];
-                    mainRepository.withdrawalAmount -= cashCounter[i] * denominations[i];
-                }
-            }
-
-            Console.WriteLine("Currency Count ->");
-
-            for (int i = 0; i < cashCounter.Length; i++)
-            {
-                if (cashCounter[i] != 0)
-                {
-                    Console.WriteLine(denominations[i] + " : "
-                        + cashCounter[i]);
-                }
-            }
+            DispenseCash(denominations);
         }
 
         private void EfficientMode()
         {
             int[] denominations = { 1000, 500, 200, 100 };
+
+            DispenseCash(denominations);
+        }
+
+        private void DispenseCash(int[] denominations)
+        {
             int[] cashCounter = new int[denominations.Length];
 
             for (int i = 0; i < cashCounter.Length; i++)
@@ -110,15 +75,30 @@ namespace ATM_Withdrawal.Service
                 }
             }
 
-            Console.WriteLine("Currency Count ->");
-
-            for (int i = 0; i < cashCounter.Length; i++)
+            if (mainRepository.withdrawalAmount == 0)
             {
-                if (cashCounter[i] != 0)
+                Console.WriteLine("The ATM have dispense: ");
+
+                for (int i = 0; i < cashCounter.Length; i++)
                 {
-                    Console.WriteLine(denominations[i] + " : "
-                        + cashCounter[i]);
+                    if (cashCounter[i] != 0)
+                    {
+                        Console.WriteLine($"{denominations[i]} : {cashCounter[i]}");
+                    }
                 }
+            }
+            else
+            {
+                Console.WriteLine("\nSorry only this denominations can be dispense: ");
+
+                for (int i = 0; i < denominations.Length; i++)
+                {
+                    Console.WriteLine(denominations[i]);
+                }
+
+                Console.WriteLine("Please enter a correct amount.\n");
+                Console.ReadKey();
+                StartTransaction();
             }
         }
     }
