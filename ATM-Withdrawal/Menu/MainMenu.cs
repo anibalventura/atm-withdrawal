@@ -21,7 +21,7 @@ namespace ATM_Withdrawal.Menu
 
                 for (int i = 0; i < options.Length; i++)
                 {
-                    Console.WriteLine($"{i + 1} - {options[i]}");
+                    Console.WriteLine($"{i + 1}. {options[i]}");
                 }
 
                 Console.Write("\nSelect an option: ");
@@ -31,16 +31,14 @@ namespace ATM_Withdrawal.Menu
                 {
                     case (int)MainMenuOptions.DISPENSE_MODE:
                         dispenseMenu.ShowMenu();
-                        ShowMenu();
                         break;
                     case (int)MainMenuOptions.WITHDRAWAL:
                         Console.Clear();
                         withdrawalService.StartTransaction();
-                        ShowMenu();
                         break;
                     case (int)MainMenuOptions.EXIT:
-                        Console.WriteLine("\nThanks for using ATM Withdrawal!");
-                        Console.WriteLine("Made by Anibal Ventura");
+                        Console.WriteLine("\n* - Thanks for using ATM Withdrawal!");
+                        Console.WriteLine("(c) Anibal Ventura");
                         Console.ReadKey();
                         Environment.Exit(0);
                         break;
@@ -48,6 +46,8 @@ namespace ATM_Withdrawal.Menu
                         WrongOptionMsg();
                         break;
                 }
+
+                ShowMenu();
             }
             catch (Exception ex)
             {
@@ -57,7 +57,7 @@ namespace ATM_Withdrawal.Menu
 
         private void WrongOptionMsg()
         {
-            Console.WriteLine("Please select a valid option.");
+            Console.WriteLine("! - Please select a valid option.");
             Console.ReadKey();
             ShowMenu();
         }

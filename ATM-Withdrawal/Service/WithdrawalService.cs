@@ -12,32 +12,53 @@ namespace ATM_Withdrawal.Service
 
         public void StartTransaction()
         {
-            Console.Write("How much do you want to withdraw: ");
-            mainRepository.withdrawalAmount = int.Parse(Console.ReadLine());
-
-            switch (mainRepository.dispenseMode)
+            try
             {
-                case (int)DispenseMenuOptions.FIRST_MODE:
-                    FirstMode();
-                    break;
-                case (int)DispenseMenuOptions.SECOND_MODE:
-                    SecondMode();
-                    break;
-                case (int)DispenseMenuOptions.EFFICIENT_MODE:
-                    EfficientMode();
-                    break;
-            }
+                Console.Write("Enter amount to withdraw: ");
+                mainRepository.withdrawalAmount = int.Parse(Console.ReadLine());
 
+                switch (mainRepository.dispenseMode)
+                {
+                    case (int)DispenseMenuOptions.FIRST_MODE:
+                        FirstMode();
+                        break;
+                    case (int)DispenseMenuOptions.SECOND_MODE:
+                        SecondMode();
+                        break;
+                    case (int)DispenseMenuOptions.EFFICIENT_MODE:
+                        EfficientMode();
+                        break;
+                }
+
+                AnotherTransaction();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("! - Please enter an amount.\n");
+                Console.ReadKey();
+                StartTransaction();
+            }
+        }
+
+        private void AnotherTransaction()
+        {
             Console.Write("\nWant to do another transaction? Y/N: ");
             string anotherTansaction = Console.ReadLine().ToUpper();
 
-            if (anotherTansaction == "Y")
+            switch (anotherTansaction)
             {
-                StartTransaction();
-            }
-            else
-            {
-                mainMenu.ShowMenu();
+                case "Y":
+                    Console.WriteLine();
+                    StartTransaction();
+                    break;
+                case "N":
+                    mainMenu.ShowMenu();
+                    break;
+                default:
+                    Console.WriteLine("! - Please enter a valid answer.");
+                    Console.ReadKey();
+                    AnotherTransaction();
+                    break;
             }
         }
 
@@ -77,26 +98,27 @@ namespace ATM_Withdrawal.Service
 
             if (mainRepository.withdrawalAmount == 0)
             {
-                Console.WriteLine("The ATM have dispense: ");
+                Console.WriteLine("\n* - The ATM have dispensed: ");
 
                 for (int i = 0; i < cashCounter.Length; i++)
                 {
                     if (cashCounter[i] != 0)
                     {
-                        Console.WriteLine($"{denominations[i]} : {cashCounter[i]}");
+                        Console.WriteLine($"    {cashCounter[i]} x {denominations[i]}");
                     }
                 }
             }
             else
             {
-                Console.WriteLine("\nSorry only this denominations can be dispense: ");
+                Console.WriteLine("\n! - Sorry only this denominations can be dispense: ");
+                Console.Write("! - ");
 
                 for (int i = 0; i < denominations.Length; i++)
                 {
-                    Console.WriteLine(denominations[i]);
+                    Console.Write($"{denominations[i]} - ");
                 }
 
-                Console.WriteLine("Please enter a correct amount.\n");
+                Console.WriteLine("\n! - Please enter a correct amount.\n");
                 Console.ReadKey();
                 StartTransaction();
             }
