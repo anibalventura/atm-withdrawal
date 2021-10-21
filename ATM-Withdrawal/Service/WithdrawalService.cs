@@ -20,13 +20,13 @@ namespace ATM_Withdrawal.Service
                 switch (mainRepository.dispenseMode)
                 {
                     case (int)DispenseMenuOptions.FIRST_MODE:
-                        FirstMode();
+                        DispenseCash(new int[] { 1000, 200 });
                         break;
                     case (int)DispenseMenuOptions.SECOND_MODE:
-                        SecondMode();
+                        DispenseCash(new int[] { 500, 100 });
                         break;
                     case (int)DispenseMenuOptions.EFFICIENT_MODE:
-                        EfficientMode();
+                        DispenseCash(new int[] { 1000, 500, 200, 100 });
                         break;
                 }
 
@@ -60,27 +60,6 @@ namespace ATM_Withdrawal.Service
                     AnotherTransaction();
                     break;
             }
-        }
-
-        private void FirstMode()
-        {
-            int[] denominations = { 1000, 200 };
-
-            DispenseCash(denominations);
-        }
-
-        private void SecondMode()
-        {
-            int[] denominations = { 500, 100 };
-
-            DispenseCash(denominations);
-        }
-
-        private void EfficientMode()
-        {
-            int[] denominations = { 1000, 500, 200, 100 };
-
-            DispenseCash(denominations);
         }
 
         private void DispenseCash(int[] denominations)

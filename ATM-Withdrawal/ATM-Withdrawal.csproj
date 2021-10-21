@@ -11,11 +11,13 @@
     <None Remove="Menu\" />
     <None Remove="Service\" />
     <None Remove="Repository\" />
+    <None Remove="Interface\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Enum\" />
     <Folder Include="Menu\" />
     <Folder Include="Service\" />
     <Folder Include="Repository\" />
+    <Folder Include="Interface\" />
   </ItemGroup>
 </Project>

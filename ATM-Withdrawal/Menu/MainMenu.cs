@@ -1,10 +1,11 @@
 ﻿using System;
 using ATM_Withdrawal.Enum;
+using ATM_Withdrawal.Interface;
 using ATM_Withdrawal.Service;
 
 namespace ATM_Withdrawal.Menu
 {
-    public class MainMenu
+    public class MainMenu: IMenu
     {
         public void ShowMenu()
         {
@@ -55,7 +56,7 @@ namespace ATM_Withdrawal.Menu
             }
         }
 
-        private void WrongOptionMsg()
+        public void WrongOptionMsg()
         {
             Console.WriteLine("! - Please select a valid option.");
             Console.ReadKey();
