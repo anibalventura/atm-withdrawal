@@ -111,7 +111,7 @@ namespace ATM_Withdrawal.Service
             else
             {
                 Console.WriteLine("\n! - Sorry only this denominations can be dispense: ");
-                Console.Write("! - ");
+                Console.Write("    ");
 
                 for (int i = 0; i < denominations.Length; i++)
                 {
